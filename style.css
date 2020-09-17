@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  overflow: hidden;
 }
   
 body {
@@ -24,7 +25,7 @@ h1, h2, h3 {
 #qr-canvas {
   margin: auto;
   width: calc(100% - 20px);
-  max-width: 400px;
+  max-width: 450px;
 }
 
 #btn-scan-qr {
