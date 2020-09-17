@@ -9,8 +9,11 @@ const outputData = document.getElementById("outputData");
 const btnScanQR = document.getElementById("btn-scan-qr");
 const imgInput = document.getElementById("img-input-qr");
 const btnCancelScan = document.getElementById("cancel-scan");
-const header1 = document.getElementById("header-1");
+const header1 = document.getElementById("header-1")
 const header2 = document.getElementById("header-2");
+const header3 = document.getElementById("header-3");
+
+const headerText = header2.innerText;
 
 //const hideClass = document.getElementsByClassName("hide-during-scan");
 
@@ -21,7 +24,7 @@ qrcode.callback = res => {
     outputData.innerText = res;
     scanning = false;
 
-    //if (String(res).match(/123/)) {console.log("matched")}
+    //if (String(res).match(/(?:(?:http|https)\:\/\/)?(?:\w{3,6}\.)?\w+\.\w{2,6}(?:\/\w+)*\/?/)) {qrResult.href = res}
 
     if (video.srcObject) {
       video.srcObject.getTracks().forEach(track => {
@@ -33,8 +36,9 @@ qrcode.callback = res => {
     canvasElement.hidden = true;
     btnScanQR.hidden = false;
     imgInput.hidden = false;
-    header1.innerText = "Click the image to start";
-    header2.hidden = false;
+    header1.hidden = false;
+    header2.innerText = headerText;
+    header3.hidden = false;
     btnCancelScan.hidden = true;
 
     //for (let i = 0; i < hideClass.length; i++) {
@@ -53,8 +57,9 @@ btnScanQR.onclick = () => {
       btnScanQR.hidden = true;
       canvasElement.hidden = false;
       imgInput.hidden = true;
-      header1.innerText = "Scanning...";
-      header2.hidden = true;
+      header1.hidden = true;
+      header2.innerText = "Scanning...";
+      header3.hidden = true;
       btnCancelScan.hidden = false;
 
       //for (let i = 0; i < hideClass.length; i++) {
@@ -72,7 +77,7 @@ btnScanQR.onclick = () => {
 };
 
 btnCancelScan.onclick = () => {
-  outputData.innerText = "Scan canceled by user.";
+  outputData.innerText = "Scan canceled by user";
   scanning = false;
 
   if (video.srcObject) {
@@ -85,8 +90,9 @@ btnCancelScan.onclick = () => {
   canvasElement.hidden = true;
   btnScanQR.hidden = false;
   imgInput.hidden = false;
-  header1.innerText = "Click the image to start";
-  header2.hidden = false;
+  header1.hidden = false;
+  header2.innerText = headerText;
+  header3.hidden = false;
   btnCancelScan.hidden = true;
 };
 
@@ -108,7 +114,7 @@ function scan() {
 
 function handleFiles(file) {
 	for (let i = 0; i < file.length; i++) {
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.onload = (function(theFile) {
       return function(e) {
         qrcode.decode(e.target.result);
