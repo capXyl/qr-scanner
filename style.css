@@ -36,6 +36,13 @@ h1, h2, h3 {
   margin: 15px;
   width: 190px;
   height: 190px;
+  border: 1px solid #263238;
+}
+
+#btn-scan-qr:hover {
+  color: #b0bec5;
+  background: #90a4ae;
+  border: 1px solid #b0bec5;
 }
 
 #btn-scan-qr img {
@@ -52,6 +59,10 @@ h1, h2, h3 {
   max-width: 700px;
   background-color: #b0bec5;
   color: black;
+}
+
+#output-data {
+  word-wrap: anywhere;
 }
 
 #img-input-qr input {
