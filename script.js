@@ -15,8 +15,6 @@ const header3 = document.getElementById("header-3");
 
 const headerText = header2.innerText;
 
-
-
 //const hideClass = document.getElementsByClassName("hide-during-scan");
 
 let scanning = false;
@@ -49,13 +47,13 @@ qrcode.callback = res => {
   }
 };
 
-const scanQR = () => {
+btnScanQR.onclick = () => {
   try {
     navigator.mediaDevices
       .getUserMedia({ video: { facingMode: "environment" } })
       .then(function(stream) {
         scanning = true;
-        
+  
         qrResult.hidden = true;
         btnScanQR.hidden = true;
         canvasElement.hidden = false;
@@ -64,11 +62,11 @@ const scanQR = () => {
         header2.innerText = "Scanning...";
         header3.hidden = true;
         btnCancelScan.hidden = false;
-        
+  
         //for (let i = 0; i < hideClass.length; i++) {
         //  hideClass[i].hidden = true;
         //}
-        
+  
         video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
         video.srcObject = stream;
         video.play();
@@ -80,12 +78,11 @@ const scanQR = () => {
         console.log(err);
       });
   } catch (error) {
-    alert('big Error'+ error);
+    alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + error.message)
   }
 };
-btnScanQR.addEventListener("click", scanQR);
 
-const cancelScan = () => {
+btnCancelScan.onclick = () => {
   scanning = false;
 
   if (video.srcObject) {
@@ -103,7 +100,6 @@ const cancelScan = () => {
   header3.hidden = false;
   btnCancelScan.hidden = true;
 };
-btnCancelScan.addEventListener("click", cancelScan);
 
 function tick() {
   canvasElement.height = video.videoHeight;
