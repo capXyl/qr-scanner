@@ -73,9 +73,8 @@ btnScanQR.onclick = () => {
       scan();
     })
     .catch(err => {
-      //alert("Something went wrong.\nTry submitting a file instead.");
+      alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + err.message);
       console.log(err);
-      document.getElementsByTagName('input')[0].click()
     });
 };
 
