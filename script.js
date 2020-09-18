@@ -47,7 +47,7 @@ qrcode.callback = res => {
   }
 };
 
-btnScanQR.onclick = () => {
+const scanQR = () => {
   navigator.mediaDevices
     .getUserMedia({ video: { facingMode: "environment" } })
     .then(function(stream) {
@@ -78,7 +78,7 @@ btnScanQR.onclick = () => {
     });
 };
 
-btnCancelScan.onclick = () => {
+const cancelScan = () => {
   scanning = false;
 
   if (video.srcObject) {
