@@ -5,7 +5,7 @@ const canvasElement = document.getElementById("qr-canvas");
 const canvas = canvasElement.getContext("2d");
 
 const qrResult = document.getElementById("qr-result");
-const outputData = document.getElementById("outputData");
+const outputData = document.getElementById("output-data");
 const btnScanQR = document.getElementById("btn-scan-qr");
 const imgInput = document.getElementById("img-input-qr");
 const btnCancelScan = document.getElementById("cancel-scan");
@@ -72,12 +72,14 @@ btnScanQR.onclick = () => {
       tick();
       scan();
     })
-    .catch(err => console.log(err)
-  );
+    .catch(err => {
+      //alert("Something went wrong.\nTry submitting a file instead.");
+      console.log(err);
+      document.getElementsByTagName('input')[0].click()
+    });
 };
 
 btnCancelScan.onclick = () => {
-  outputData.innerText = "Scan canceled by user";
   scanning = false;
 
   if (video.srcObject) {
@@ -86,7 +88,7 @@ btnCancelScan.onclick = () => {
     });
   }
 
-  qrResult.hidden = false;
+  qrResult.hidden = outputData.innerText ? false : true;
   canvasElement.hidden = true;
   btnScanQR.hidden = false;
   imgInput.hidden = false;
