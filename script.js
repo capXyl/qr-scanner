@@ -15,6 +15,8 @@ const header3 = document.getElementById("header-3");
 
 const headerText = header2.innerText;
 
+
+
 //const hideClass = document.getElementsByClassName("hide-during-scan");
 
 let scanning = false;
@@ -77,6 +79,7 @@ const scanQR = () => {
       console.log(err);
     });
 };
+btnScanQR.addEventListener("click", scanQR);
 
 const cancelScan = () => {
   scanning = false;
@@ -96,6 +99,7 @@ const cancelScan = () => {
   header3.hidden = false;
   btnCancelScan.hidden = true;
 };
+btnCancelScan.addEventListener("click", cancelScan);
 
 function tick() {
   canvasElement.height = video.videoHeight;
