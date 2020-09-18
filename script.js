@@ -48,34 +48,38 @@ qrcode.callback = res => {
 };
 
 btnScanQR.onclick = () => {
-  navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: "environment" } })
-    .then(function(stream) {
-      scanning = true;
-
-      qrResult.hidden = true;
-      btnScanQR.hidden = true;
-      canvasElement.hidden = false;
-      imgInput.hidden = true;
-      header1.hidden = true;
-      header2.innerText = "Scanning...";
-      header3.hidden = true;
-      btnCancelScan.hidden = false;
-
-      //for (let i = 0; i < hideClass.length; i++) {
-      //  hideClass[i].hidden = true;
-      //}
-
-      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.srcObject = stream;
-      video.play();
-      tick();
-      scan();
-    })
-    .catch(err => {
-      alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + err.message);
-      console.log(err);
-    });
+  try {
+    navigator.mediaDevices
+      .getUserMedia({ video: { facingMode: "environment" } })
+      .then(function(stream) {
+        scanning = true;
+  
+        qrResult.hidden = true;
+        btnScanQR.hidden = true;
+        canvasElement.hidden = false;
+        imgInput.hidden = true;
+        header1.hidden = true;
+        header2.innerText = "Scanning...";
+        header3.hidden = true;
+        btnCancelScan.hidden = false;
+  
+        //for (let i = 0; i < hideClass.length; i++) {
+        //  hideClass[i].hidden = true;
+        //}
+  
+        video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+        video.srcObject = stream;
+        video.play();
+        tick();
+        scan();
+      })
+      .catch(err => {
+        alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + err.message);
+        console.log(err);
+      });
+  } catch (error) {
+    alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + error.message)
+  }
 };
 
 btnCancelScan.onclick = () => {
