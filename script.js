@@ -1,4 +1,4 @@
-// QR Library Documentation: https://github.com/LazarSoft/jsqrcode/blob/master/README
+// QR Library Documentation: https://github.com/LazarSoft/jsqrcode
 
 const video = document.createElement("video");
 const canvasElement = document.getElementById("qr-canvas");
@@ -9,7 +9,7 @@ const outputData = document.getElementById("output-data");
 const btnScanQR = document.getElementById("btn-scan-qr");
 const imgInput = document.getElementById("img-input-qr");
 const btnCancelScan = document.getElementById("cancel-scan");
-const header1 = document.getElementById("header-1")
+const header1 = document.getElementById("header-1");
 const header2 = document.getElementById("header-2");
 const header3 = document.getElementById("header-3");
 
@@ -75,10 +75,9 @@ btnScanQR.onclick = () => {
       })
       .catch(err => {
         alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + err.message);
-        console.log(err);
       });
   } catch (error) {
-    alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + error.message)
+    alert("Something went wrong.\nTry submitting a file instead.\n\nError: " + error.message);
   }
 };
 
@@ -120,12 +119,12 @@ function scan() {
 function handleFiles(file) {
 	for (let i = 0; i < file.length; i++) {
     let reader = new FileReader();
-    reader.onload = (function(theFile) {
+    reader.onload = (function() {
       return function(e) {
         qrcode.decode(e.target.result);
       };
     })
     (file[i]);
-    reader.readAsDataURL(file[i]);	
+    reader.readAsDataURL(file[i]);
   }
 }
